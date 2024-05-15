@@ -26,4 +26,3 @@ jobs:
         with:
           github_api_token: ${{ secrets.ACTION_GITHUB_TOKEN }}
           srcclr_token: ${{ secrets.SRCCLR_API_TOKEN_KURO }}
-          path_to_dependencies: plugins/analysis-kuromoji

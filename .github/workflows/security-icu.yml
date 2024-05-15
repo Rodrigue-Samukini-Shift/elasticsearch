@@ -23,5 +23,5 @@ jobs:
         uses: ./.github/actions/security/sca
         with:
           github_api_token: ${{ secrets.ACTION_GITHUB_TOKEN }}
-          srcclr_token: ${{ secrets.SRCCLR_API_TOKEN }}
+          srcclr_token: ${{ secrets.SRCCLR_API_TOKEN_ICU }}
           path_to_dependencies: plugins/analysis-icu

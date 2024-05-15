@@ -1,0 +1,27 @@
+name: security scan
+on: [push]
+jobs:
+  Security-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Checkout security actions
+        uses: actions/checkout@v4
+        with:
+          repository: shift-technology/security-shared-library
+          ref: "1.0.74"
+          path: .github/actions/security
+          sparse-checkout: |
+            sca
+            sastpipeline
+            sastupload
+            container-scan
+          sparse-checkout-cone-mode: false
+          token: ${{ secrets.ACTION_GITHUB_TOKEN }}
+      - name: Veracode SCA scan
+        uses: ./.github/actions/security/sca
+        with:
+          github_api_token: ${{ secrets.ACTION_GITHUB_TOKEN }}
+          srcclr_token: ${{ secrets.SRCCLR_API_TOKEN }}
+          path_to_dependencies: Source/JobScheduler
